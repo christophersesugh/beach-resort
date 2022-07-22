@@ -1,15 +1,37 @@
 import * as React from "react";
+// import { useQuery } from "react-query";
+import { useAsync } from "../use-async";
+import data from "../data";
 
 const RoomsContext = React.createContext();
 
 function RoomsProvider(props) {
-  const [room, setRoom] = React.useState({
-    rooms: [],
-    featuredRooms: [],
-    sortedRooms: [],
-  });
+  const [rooms, setRooms] = React.useState(data);
+  // const {
+  //   data: rooms,
+  //   run,
+  //   isError,
+  //   isIdle,
+  //   isLoading,
+  //   isSuccess,
+  //   setData,
+  // } = useAsync();
 
-  return <RoomsContext.Provider value={1} {...props} />;
+  // async function fetchRooms() {
+  //   let data = window
+  //     .fetch("../data")
+  //     .then((response) => response.json())
+  //     .then((response) => setData(response));
+  //   return data;
+  // }
+
+  // React.useEffect(() => {
+  //   run(fetchRooms());
+  // }, []);
+
+  // console.log(rooms);
+
+  return <RoomsContext.Provider value={{ rooms, setRooms }} {...props} />;
 }
 
 function useRooms() {

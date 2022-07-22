@@ -10,7 +10,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/rooms" element={<Rooms />} />
-      <Route path="/room/:slug" element={<SingleRoom />} />
+      <Route path="/single-room/:slug" element={<SingleRoom />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );
