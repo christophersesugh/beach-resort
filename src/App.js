@@ -1,5 +1,4 @@
 import { ErrorBoundary } from "react-error-boundary";
-import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import AppRoutes from "./components/app-routes";
 import FullPageErrorFallback from "./components/full-page-error-fallback";

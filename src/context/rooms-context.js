@@ -1,6 +1,6 @@
 import * as React from "react";
 // import { useQuery } from "react-query";
-import { useAsync } from "../use-async";
+// import { useAsync } from "../use-async";
 import data from "../data";
 
 const RoomsContext = React.createContext();

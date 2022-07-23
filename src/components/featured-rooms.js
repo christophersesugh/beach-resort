@@ -1,7 +1,7 @@
 import React from "react";
 import { useRooms } from "../context/rooms-context";
 import SectionTitle from "./section-title";
-import Loading from "./loading";
+// import Loading from "./loading";
 import Room from "./room";
 export default function FeaturedRooms({ id }) {
   const { rooms } = useRooms();
