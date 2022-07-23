@@ -8,7 +8,7 @@ export default function Rooms() {
     <div>
       <Hero hero="roomsHero">
         <Banner title="our rooms">
-          <Link to="/" className="btn-primary">
+          <Link to="/#featured" className="btn-primary">
             return home
           </Link>
         </Banner>

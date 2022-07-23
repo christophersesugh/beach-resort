@@ -7,7 +7,7 @@ export default function FullPageErrorFallback({ error, resetErrorBoundary }) {
     <Hero>
       <Banner title="Error..." subtitle={error.message}>
         <button className="btn-primary" onClick={resetErrorBoundary}>
-          reload data
+          try refreshing page
         </button>
       </Banner>
     </Hero>
