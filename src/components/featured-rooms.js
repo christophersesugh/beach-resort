@@ -3,7 +3,7 @@ import { useRooms } from "../context/rooms-context";
 import SectionTitle from "./section-title";
 // import Loading from "./loading";
 import Room from "./room";
-export default function FeaturedRooms({ id }) {
+export default function FeaturedRooms() {
   const { rooms } = useRooms();
 
   const featuredRooms = rooms.filter((room) => {
@@ -12,7 +12,7 @@ export default function FeaturedRooms({ id }) {
   });
 
   return (
-    <section className="featured-rooms" id={id}>
+    <section className="featured-rooms">
       <SectionTitle title="featured rooms" />
       {/* <Loading /> */}
       <div className="featured-rooms-center">

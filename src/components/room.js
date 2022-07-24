@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Room({ room }) {
   const { name, slug, images, price } = room.fields;
-  console.log(name, images, price);
+
   return (
     <article className="room">
       <div className="img-container">

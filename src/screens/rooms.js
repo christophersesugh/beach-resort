@@ -2,17 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Banner from "../components/banner";
 import Hero from "../components/hero";
+import RoomsContainer from "../components/rooms-container";
 
 export default function Rooms() {
   return (
-    <div>
+    <>
       <Hero hero="roomsHero">
         <Banner title="our rooms">
-          <Link to="/#featured" className="btn-primary">
+          <Link to="/" className="btn-primary">
             return home
           </Link>
         </Banner>
       </Hero>
-    </div>
+      <RoomsContainer />
+    </>
   );
 }
