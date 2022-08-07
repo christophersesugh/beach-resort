@@ -4,6 +4,7 @@ import { useRooms } from "../context/rooms-context";
 // import Hero from "../components/hero";
 import Banner from "../components/banner";
 import StyledHero from "../components/styled-hero";
+import { images } from "../images";
 
 export default function SingleRoom() {
   const { slug } = useParams();
@@ -13,7 +14,7 @@ export default function SingleRoom() {
 
   return (
     <>
-      <StyledHero img={room.image}>
+      <StyledHero img={room.images[0]}>
         <Banner title={`${room.name} room`}>
           <Link to="/rooms" className="btn-primary">
             back to rooms
@@ -22,7 +23,7 @@ export default function SingleRoom() {
       </StyledHero>
       <section className="single-room">
         <div className="single-room-images">
-          {room?.images.map((image, index) => {
+          {room.images.map((image, index) => {
             return <img src={image} alt={room.name} id={index} key={index} />;
           })}
         </div>
