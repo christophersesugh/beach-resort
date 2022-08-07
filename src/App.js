@@ -1,20 +1,15 @@
-import { ErrorBoundary } from "react-error-boundary";
+import React from "react";
 import "./App.css";
-import AppRoutes from "./components/app-routes";
-import FullPageErrorFallback from "./components/full-page-error-fallback";
-import Navbar from "./components/navbar";
+import Loading from "./components/loading";
+const UnauthenticatedApp = React.lazy(() => import("./unauthenticated-app"));
+const AuthenticatedApp = React.lazy(() => import("./authenticated-app"));
 
 function App() {
+  let user = true;
   return (
-    <main>
-      <ErrorBoundary
-        FallbackComponent={FullPageErrorFallback}
-        onReset={() => {}}
-      >
-        <Navbar />
-        <AppRoutes />
-      </ErrorBoundary>
-    </main>
+    <React.Suspense fallback={<Loading />}>
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </React.Suspense>
   );
 }
 

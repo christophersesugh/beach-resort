@@ -1,37 +1,51 @@
 import * as React from "react";
-// import { useQuery } from "react-query";
-// import { useAsync } from "../use-async";
-import data from "../data";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { firebaseConfig } from "../utils/config";
+import { useAsync } from "../utils/hooks/use-async";
+import Loading from "../components/loading";
+import FullPageErrorFallback from "../components/full-page-error-fallback";
+
+initializeApp(firebaseConfig);
+const db = getFirestore();
+const coll = collection(db, "rooms");
 
 const RoomsContext = React.createContext();
 
 function RoomsProvider(props) {
-  const [rooms, setRooms] = React.useState(data);
-  // const {
-  //   data: rooms,
-  //   run,
-  //   isError,
-  //   isIdle,
-  //   isLoading,
-  //   isSuccess,
-  //   setData,
-  // } = useAsync();
+  const {
+    data: rooms,
+    run,
+    error,
+    setData: setRooms,
+    isError,
+    isIdle,
+    isLoading,
+    isSuccess,
+  } = useAsync();
 
-  // async function fetchRooms() {
-  //   let data = window
-  //     .fetch("../data")
-  //     .then((response) => response.json())
-  //     .then((response) => setData(response));
-  //   return data;
-  // }
+  function fetchRooms() {
+    let result = getDocs(coll).then((rooms) => {
+      return rooms.docs.map((room) => room.data());
+    });
+    return result;
+  }
 
-  // React.useEffect(() => {
-  //   run(fetchRooms());
-  // }, []);
+  React.useEffect(() => {
+    run(fetchRooms());
+  }, []);
 
-  // console.log(rooms);
+  if (isIdle || isLoading) {
+    return <Loading />;
+  }
 
-  return <RoomsContext.Provider value={{ rooms, setRooms }} {...props} />;
+  if (isError) {
+    return <FullPageErrorFallback error={error} />;
+  }
+
+  if (isSuccess) {
+    return <RoomsContext.Provider value={{ rooms, setRooms }} {...props} />;
+  }
 }
 
 function useRooms() {

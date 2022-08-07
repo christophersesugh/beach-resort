@@ -9,7 +9,7 @@ export default function SingleRoom() {
   const { slug } = useParams();
 
   const { rooms } = useRooms();
-  const room = rooms.find((room) => room.fields.slug === slug);
+  const room = rooms.find((room) => room.data().slug === slug);
   const { name, description, price, size, capacity, pets, breakfast, extras } =
     room.fields;
   return (
@@ -24,14 +24,7 @@ export default function SingleRoom() {
       <section className="single-room">
         <div className="single-room-images">
           {room.fields.images.map((image, index) => {
-            return (
-              <img
-                src={image.fields.file.url}
-                alt={room.fields.name}
-                id={index}
-                key={index}
-              />
-            );
+            return <img src={image} alt={room.name} id={index} key={index} />;
           })}
         </div>
         <div className="single-room-info">

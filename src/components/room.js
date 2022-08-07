@@ -7,7 +7,7 @@ export default function Room({ room }) {
   return (
     <article className="room">
       <div className="img-container">
-        <img src={images[0]?.fields?.file?.url} alt={name} />
+        <img src={room?.img} />
         <div className="price-top">
           <h6>${price}</h6>
           <p>per night</p>
