@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
-import logo from "../images/logo.svg";
-
+const logo =
+  "https://res.cloudinary.com/christo/image/upload/v1659900065/logo_vmpclo.svg";
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   function handleToggle() {
@@ -26,6 +26,7 @@ export default function Navbar() {
           <li>
             <Link to="/rooms">Rooms</Link>
           </li>
+          {/* <button className="btn logout-btn">log out</button> */}
         </ul>
       </div>
     </nav>

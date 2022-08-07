@@ -1,10 +1,8 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useRooms } from "../context/rooms-context";
-// import Hero from "../components/hero";
 import Banner from "../components/banner";
 import StyledHero from "../components/styled-hero";
-import { images } from "../images";
 
 export default function SingleRoom() {
   const { slug } = useParams();

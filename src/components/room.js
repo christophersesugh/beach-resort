@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { images } from "../images";
 
 export default function Room({ room }) {
   return (
     <article className="room">
       <div className="img-container">
-        <img src={room.images[0]} />
+        <img src={room.images[0]} alt={room.name} />
         <div className="price-top">
           <h6>${room.price}</h6>
           <p>per night</p>

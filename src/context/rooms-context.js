@@ -33,7 +33,7 @@ function RoomsProvider(props) {
 
   React.useEffect(() => {
     run(fetchRooms());
-  }, []);
+  }, [run]);
 
   if (isIdle || isLoading) {
     return <Loading />;
@@ -51,7 +51,7 @@ function RoomsProvider(props) {
 function useRooms() {
   const context = React.useContext(RoomsContext);
   if (context === undefined) {
-    throw new Error(`useRooms must be used in a context provider.`);
+    throw new Error(`useRooms must be used in a RoomsProvider.`);
   }
   return context;
 }
