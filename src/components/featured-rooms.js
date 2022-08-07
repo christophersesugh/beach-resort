@@ -7,8 +7,7 @@ export default function FeaturedRooms() {
   const { rooms } = useRooms();
 
   const featuredRooms = rooms.filter((room) => {
-    const { featured } = room.fields;
-    return featured === true;
+    return room.featured === true;
   });
 
   return (
@@ -16,9 +15,8 @@ export default function FeaturedRooms() {
       <SectionTitle title="featured rooms" />
       {/* <Loading /> */}
       <div className="featured-rooms-center">
-        {featuredRooms.map((room) => {
-          const { id } = room.sys;
-          return <Room key={id} room={room} />;
+        {featuredRooms.map((room, index) => {
+          return <Room key={index} room={room} />;
         })}
       </div>
     </section>

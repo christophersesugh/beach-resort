@@ -9,7 +9,9 @@ export default function AuthenticatedApp() {
     <>
       <ErrorBoundary
         FallbackComponent={FullPageErrorFallback}
-        onReset={() => {}}
+        onReset={() => {
+          window.history.go();
+        }}
       >
         <Navbar />
         <AppRoutes />

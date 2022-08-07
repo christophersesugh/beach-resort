@@ -2,21 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Room({ room }) {
-  const { name, slug, images, price } = room.fields;
-
   return (
     <article className="room">
       <div className="img-container">
-        <img src={room?.img} />
+        <img src={room.images[0].path} />
         <div className="price-top">
-          <h6>${price}</h6>
+          <h6>${room.price}</h6>
           <p>per night</p>
         </div>
-        <Link to={`/single-room/${slug}`} className="btn-primary room-link">
+        <Link to={`/room/${room.slug}`} className="btn-primary room-link">
           Features
         </Link>
       </div>
-      <p className="room-info">{name}</p>
+      <p className="room-info">{room.name}</p>
     </article>
   );
 }
