@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
+import { useAuth } from "../context/auth-context";
 const logo =
   "https://res.cloudinary.com/christo/image/upload/v1659900065/logo_vmpclo.svg";
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { logout } = useAuth();
+
   function handleToggle() {
     setIsOpen(!isOpen);
   }
@@ -27,7 +30,7 @@ export default function Navbar() {
             <Link to="/rooms">Rooms</Link>
           </li>
           <li>
-            <button>log out</button>
+            <button onClick={logout}>log out</button>
           </li>
         </ul>
       </div>

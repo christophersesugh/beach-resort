@@ -11,12 +11,14 @@ const db = getFirestore();
 const coll = collection(db, "rooms");
 
 const RoomsContext = React.createContext();
+RoomsContext.displayName = "RoomContext";
 
 function RoomsProvider(props) {
   const {
     data: rooms,
     run,
     error,
+    status,
     setData: setRooms,
     isError,
     isIdle,
@@ -46,6 +48,8 @@ function RoomsProvider(props) {
   if (isSuccess) {
     return <RoomsContext.Provider value={{ rooms, setRooms }} {...props} />;
   }
+
+  throw new Error(`Unhandled status ${status}`);
 }
 
 function useRooms() {
