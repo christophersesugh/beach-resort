@@ -26,7 +26,9 @@ export default function Navbar() {
           <li>
             <Link to="/rooms">Rooms</Link>
           </li>
-          {/* <button className="btn logout-btn">log out</button> */}
+          <li>
+            <button>log out</button>
+          </li>
         </ul>
       </div>
     </nav>

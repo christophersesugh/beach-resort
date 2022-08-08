@@ -1,4 +1,6 @@
-* {
+*,
+::before,
+::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -75,22 +77,30 @@ h6 {
   color: var(--primaryColor);
 }
 
-/* .logout-btn {
-  display: inline-block;
-  text-decoration: none;
-  letter-spacing: var(--mainSpacing);
-  color: var(--mainBlack);
-  background: var(--primaryColor);
-  padding: 0.4rem 0.9rem;
-  border: 3px solid var(--primaryColor);
-  transition: var(--mainTransition);
+.auth-screen {
+  background: url("./images/marc-babin-9IzrXQakxk0-unsplash.jpg") center/cover
+    no-repeat;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  margin-top: -66px;
+  opacity: 0.9;
+}
+
+.auth-screen .btn {
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primaryColor);
+  color: var(--offWhite);
+  font-weight: bold;
+  padding: 8px 12px;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 5px;
+  margin: 4px;
 }
-.logout-btn:hover {
-  color: #f7f7f7;
-} */
 
 .login-modal {
   width: 100%;
@@ -102,10 +112,10 @@ h6 {
   display: none;
 }
 
-.modal-content {
+.login-modal-content {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 32%;
   margin: 8rem auto;
   display: flex;
   justify-content: center;
@@ -113,14 +123,31 @@ h6 {
   padding: 12px;
   border: 2px solid var(--primaryColor);
   border-radius: 8px;
-  background-color: var(--darkGrey);
+  background-color: var(--offWhite);
+  animation: 0.3s animate-zoom;
+}
+
+@media screen and (max-width: 776px) {
+  .login-modal-content {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .login-modal-content {
+    width: 100%;
+  }
+}
+.modal-content h2 {
+  color: var(--primaryColor);
+  text-transform: capitalize;
 }
 
 .show-modal {
   display: block;
 }
 
-.close-modal {
+.login-modal .close-modal {
   color: var(--offWhite);
   background-color: rgb(222, 118, 118);
   align-self: flex-end;
@@ -128,6 +155,72 @@ h6 {
   padding: 6px 12px;
   border-radius: 5px;
   font-size: larger;
+  cursor: pointer;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.auth-form h4 {
+  text-align: center;
+  color: var(--primaryColor);
+}
+
+.auth-form label {
+  display: block;
+  text-transform: capitalize;
+  margin-bottom: 6px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  display: block;
+}
+
+.auth-form .form-control {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.auth-form > .form-control .form-control-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  position: absolute;
+  right: 0;
+  color: var(--offWhite);
+  background-color: var(--primaryColor);
+}
+
+.auth-form input:focus {
+  outline: 2px solid var(--primaryColor);
+}
+
+.auth-form .form-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primaryColor);
+  color: var(--offWhite);
+  padding: 8px 12px;
+  font-size: large;
+}
+
+@keyframes animate-zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .loading {
@@ -165,6 +258,7 @@ h6 {
   display: flex;
   justify-content: space-between;
 }
+
 .nav-btn {
   background: transparent;
   border: none;
@@ -175,11 +269,20 @@ h6 {
   font-size: 1.5rem;
   color: var(--primaryColor);
 }
+
+/* .nav-center .btn-container {
+  display: flex;
+} */
 .nav-links {
   height: 0;
   overflow: hidden;
   transition: var(--mainTransition);
   list-style-type: none;
+}
+
+.nav-links li {
+  text-align: center;
+  margin: auto 0;
 }
 .nav-links a {
   display: block;
@@ -192,12 +295,24 @@ h6 {
   font-weight: 600;
   letter-spacing: var(--mainSpacing);
 }
+
+.nav-links li button {
+  border: none;
+  background-color: var(--primaryColor);
+  padding: 6px 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 5px;
+  color: var(--offWhite);
+  cursor: pointer;
+}
 .nav-links a:hover {
   color: var(--primaryColor);
 }
 
 .show-nav {
-  height: 100px;
+  height: 150px;
 }
 @media screen and (min-width: 768px) {
   .nav-btn {
@@ -207,6 +322,7 @@ h6 {
     max-width: 1170px;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
   }
   .nav-links {
     height: auto;

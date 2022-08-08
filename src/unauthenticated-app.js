@@ -1,20 +1,37 @@
 import React from "react";
 import Form from "./components/auth-form";
 import Modal from "./components/auth-modal";
+import Banner from "./components/banner";
 
 export default function UnauthenticatedApp() {
   const [isModalOpen, setIsModalOpen] = React.useState("none");
   return (
-    <section className="login-screen">
-      <Modal isModalOpen={isModalOpen === "register"}>
-        <Form buttonText="Register" />
-      </Modal>
-      <Modal isModalOpen={isModalOpen === "login"}>
-        <Form buttonText="Login" />
-      </Modal>
+    <section className="auth-screen">
+      <Banner title="beach resort" subtitle="register/Login to explore!">
+        <button onClick={() => setIsModalOpen("login")} className="btn">
+          login
+        </button>
+        <button onClick={() => setIsModalOpen("register")} className="btn">
+          register
+        </button>
+      </Banner>
 
-      <button onClick={() => setIsModalOpen("login")}>login</button>
-      <button onClick={() => setIsModalOpen("register")}>register</button>
+      <Modal isOpen={isModalOpen === "login"} setIsOpen={setIsModalOpen}>
+        <Form
+          buttonText="Login"
+          onSubmit={(email, password) => console.log(email, password)}
+          id1="loginEmail"
+          id2="loginPassword"
+        />
+      </Modal>
+      <Modal isOpen={isModalOpen === "register"} setIsOpen={setIsModalOpen}>
+        <Form
+          buttonText="Register"
+          onSubmit={(email, password) => console.log(email, password)}
+          id1="registerEmail"
+          id2="registerPassword"
+        />
+      </Modal>
     </section>
   );
 }
