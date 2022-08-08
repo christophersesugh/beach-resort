@@ -20,16 +20,12 @@ export default function UnauthenticatedApp() {
         <Form
           buttonText="Login"
           onSubmit={(email, password) => console.log(email, password)}
-          id1="loginEmail"
-          id2="loginPassword"
         />
       </Modal>
       <Modal isOpen={isModalOpen === "register"} setIsOpen={setIsModalOpen}>
         <Form
           buttonText="Register"
           onSubmit={(email, password) => console.log(email, password)}
-          id1="registerEmail"
-          id2="registerPassword"
         />
       </Modal>
     </section>
