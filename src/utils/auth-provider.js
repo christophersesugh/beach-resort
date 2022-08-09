@@ -11,20 +11,10 @@ import { firebaseConfig } from "./config/index";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const register = async ({ email, password }) => {
-  createUserWithEmailAndPassword(auth, email, password).then(
-    console.log(email, password)
-  );
+export {
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  auth,
+  onAuthStateChanged,
 };
-
-const login = async ({ email, password }) => {
-  signInWithEmailAndPassword(auth, email, password).then(
-    console.log(email, password)
-  );
-};
-
-const logout = async () => {
-  signOut(auth);
-};
-
-export { register, login, logout, auth, onAuthStateChanged };

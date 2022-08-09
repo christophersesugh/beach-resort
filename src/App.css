@@ -199,6 +199,7 @@ h6 {
   right: 0;
   color: var(--offWhite);
   background-color: var(--primaryColor);
+  cursor: pointer;
 }
 
 .auth-form input:focus {
@@ -212,6 +213,8 @@ h6 {
   color: var(--offWhite);
   padding: 8px 12px;
   font-size: large;
+  cursor: pointer;
+  text-align: center;
 }
 
 @keyframes animate-zoom {

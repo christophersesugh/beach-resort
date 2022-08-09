@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as auth from "../utils/auth-provider";
-import { useAsync } from "../utils/hooks/use-async";
-import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "../components/loading";
+import FullPageErrorFallback from "../components/full-page-error-fallback";
 
 const AuthContext = React.createContext();
 AuthContext.displayName = "AuthContext";
@@ -16,23 +16,46 @@ function AuthProvider(props) {
   const isError = status === "error";
   const isSuccess = status === "success";
 
-  const register = (form) => auth.register(form);
-  const login = (form) => auth.login(form);
-  const logout = () => auth.logout();
-
   function handleUser(user) {
     setUser(user);
+    setStatus("success");
   }
 
   function handleError(error) {
     setError(error);
+    setStatus("error");
   }
 
   React.useEffect(() => {
+    setStatus("loading");
     auth.onAuthStateChanged(auth.auth, handleUser, handleError);
   }, []);
-  const authProps = { register, login, logout, user };
-  return <AuthContext.Provider value={authProps} {...props} />;
+
+  const register = async ({ email, password }) =>
+    auth.createUserWithEmailAndPassword(auth.auth, email, password);
+
+  const login = async ({ email, password }) =>
+    auth.signInWithEmailAndPassword(auth.auth, email, password);
+
+  const logout = async () => {
+    auth.signOut(auth.auth);
+    setUser(null);
+  };
+
+  if (isIdle || isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <FullPageErrorFallback error={error} />;
+  }
+
+  if (isSuccess) {
+    const authProps = { register, login, logout, user };
+    return <AuthContext.Provider value={authProps} {...props} />;
+  }
+
+  throw new Error(`Unhandled status ${status}`);
 }
 
 function useAuth() {

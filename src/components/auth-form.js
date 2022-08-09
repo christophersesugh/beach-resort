@@ -2,9 +2,7 @@ import React from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { useAsync } from "../utils/hooks/use-async";
 
-function Form(props) {
-  const { buttonText, onSubmit } = props;
-
+function Form({ onSubmit, buttonText }) {
   const [showPassword, setShowPassword] = React.useState(false);
   const { run, error, isError, isLoading } = useAsync();
 
@@ -43,15 +41,20 @@ function Form(props) {
           )}
         </button>
       </div>
+      <div style={{ marginBottom: "1rem", textAlign: "center" }}>
+        {isError ? (
+          <span style={{ color: "red", textAlign: "center" }}>
+            {error.message.substring(22)}
+          </span>
+        ) : null}
+      </div>
+
       <div>
         <button type="submit" className="form-btn" disabled={isLoading}>
           {isLoading ? <FaSpinner aria-label="loading" /> : buttonText}
         </button>
-        {isError ? (
-          <span style={{ color: "red", textAlign: "center" }}>
-            {error.message}
-          </span>
-        ) : null}
+        <br />
+        <br />
       </div>
     </form>
   );
