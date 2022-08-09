@@ -57,8 +57,6 @@ function Form({ onSubmit, buttonText }) {
             buttonText
           )}
         </button>
-        <br />
-        <br />
       </div>
     </form>
   );
