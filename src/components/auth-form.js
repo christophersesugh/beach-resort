@@ -51,7 +51,11 @@ function Form({ onSubmit, buttonText }) {
 
       <div>
         <button type="submit" className="form-btn" disabled={isLoading}>
-          {isLoading ? <FaSpinner aria-label="loading" /> : buttonText}
+          {isLoading ? (
+            <FaSpinner aria-label="loading" className="loading-icon" />
+          ) : (
+            buttonText
+          )}
         </button>
         <br />
         <br />
