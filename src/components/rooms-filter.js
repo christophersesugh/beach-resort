@@ -13,6 +13,7 @@ export default function RoomsFilter({ setRooms, rooms }) {
       .filter((room) => room.type === typeValue);
     setRooms(filteredRoom);
   }
+
   return (
     <section className="filter-container">
       <ServiceTitle title="search rooms" />
@@ -22,9 +23,12 @@ export default function RoomsFilter({ setRooms, rooms }) {
           <select
             name="type"
             id="type"
-            // value={typeValue}
+            value={typeValue}
             defaultValue={typeValue}
-            onChange={(e) => setTypeValue(e.target.value)}
+            onChange={(e) => {
+              setTypeValue(e.target.value);
+              e.submit();
+            }}
           >
             {types.map((type) => {
               return (
@@ -35,7 +39,7 @@ export default function RoomsFilter({ setRooms, rooms }) {
             })}
           </select>
         </div>
-        <button type="submit">submit</button>
+        <button type="submit">filter</button>
       </form>
     </section>
   );

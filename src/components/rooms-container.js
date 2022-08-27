@@ -8,7 +8,7 @@ export default function RoomsContainer() {
 
   return (
     <>
-      <RoomsFilter rooms={rooms} setRooms={setRooms} />
+      {/* <RoomsFilter rooms={rooms} setRooms={setRooms} /> */}
       <RoomsList rooms={rooms} />
     </>
   );
